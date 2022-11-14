@@ -11,7 +11,8 @@ math.factorial(42)
 42.5.ceil()
 math.sqrt(4)
 math.sqrt(2)
-
+abc = ['b', 'c', 'd']
+x = abc.index("c") 
 #Looks at all contents list
 
 print(random.choices("a","b","c", k=5 )) #chooses random
@@ -31,6 +32,7 @@ HelloWorld.isdigit(x)#gets digit
 lst = [1, 2, 3, 4]
 
 bst = [4,5,6]
+lst.insert(1, bst)#i
 lst.extend(bst)#adds bst to lst
 lst.pop(0) #remofes item at given index
 lst.sort() #sorts list

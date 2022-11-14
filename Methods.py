@@ -36,3 +36,8 @@ lst.insert(1, bst)#i
 lst.extend(bst)#adds bst to lst
 lst.pop(0) #remofes item at given index
 lst.sort() #sorts list
+
+#map
+def upper(x):
+    return str(x).upper
+map(upper, text)

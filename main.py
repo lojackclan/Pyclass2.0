@@ -1,30 +1,29 @@
 print("Type NEW to create a new document.")
-print("Type CLOSE to close the document.")
-print("Type SAVE to save.")
+print("Type SAVECLOSE to save & close.")
 print("Type OPEN to open.")
 print("Type NAME to rename.")
 print("Type EDIT to edit.")
 DocNameList = []
 Line = ""
-LineCount = 0
-CurrentDoc = []
-DocListAndContents = {}
+LineCount = 1
+CurrentDoc = ""
 Writing = 0
 DocName = ""
+DocListContents = []
 
 def ASK():
+    global CurrentDoc
     global LineCount
     global Line
     global DocName
     global Writing
     StartOption = ""
-    while StartOption != "SAVE" or StartOption != "NEW" or "EDIT" or StartOption != "OPEN" or StartOption != "NAME":
+    while StartOption != "SAVE" or StartOption != "NEW" or "EDIT" or StartOption != "OPEN" or StartOption != "NAME" or StartOption != "SAVECLOSE":
         StartOption = input("Enter:")
         if StartOption == "NEW":
-            LineCount = 0
-            Line = ""
+            LineCount = 1
             DocName = input("Document Name:")
-            Writing = 1
+            Writing = 0
             DocNameList.append(DocName)
             NEW()
         if StartOption == "CLOSE":
@@ -35,30 +34,57 @@ def ASK():
             pass
         if StartOption == "EDIT":
             EDIT()
-def CLOSE():
+        if StartOption == "SAVECLOSE":
+            SAVECLOSE()
+
+def SAVECLOSE():
     global CurrentDoc
     global DocName
     global Writing
+    DocListContents.append[CurrentDoc]
     CurrentDoc = []
     DocName = ""
     Writing = 0
     StartOption = ""
+    ASK()
 
 
 def NEW():
+    global CurrentDoc
     global Writing
     global LineCount
-    while Writing == 1:
-        Line = input()
-        CurrentDoc.append(Line)
+    while Writing == 0:
+        print(f"Line {LineCount}:")
+        Line = input(f"\n")
+        CurrentDoc.append(f"{Line}\n") 
         LineCount += 1
-        if "CLOSE" in Line:
-            CLOSE()
+        if "HOME" in Line:
+            ASK()
 
 def EDIT():
-    CurrentDoc[2] = input("Enter:")
+    global CurrentDoc
+    Editing = True
+    while Editing == True:
+        EditLine = int(input("Line (int) you want to replace:"))
+        while EditLine <= len(CurrentDoc):
+            ReplaceLine = input("Replace contents:")
+            if "HOME" in ReplaceLine:
+                ASK()
+                Editing = False
+            else:
+                CurrentDoc[EditLine] = ReplaceLine
+                print(f"Edited line {CurrentDoc[EditLine]}")
+                print("Edit complete next line")
+
 
 ASK()
+
+
+
+
+
+
+
 
 
 
